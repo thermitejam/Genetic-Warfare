@@ -2,33 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stats : MonoBehaviour
+public class AlienBase : MonoBehaviour
 {
-    [SerializeField]
-    private float score, shopPrice = 250, defence, attackSpeed, movementSpeed, damage, health, range;
-    [SerializeField]
-    public Vector2 defenceMinMax, attackSpeedMinMax, movementSpeedMinMax, damageMinMax, healthMinMax, rangeMinMax;    
 
+    [SerializeField] // STATS
+    private float score, shopPrice = 250, defence, attackSpeed, movementSpeed, damage, health, range;
+    [SerializeField] // CREATION PARAMETERS these are default values, eventually you wont need default values because youll create it in the enemy Start() this is just for testing
+    public Vector2 defenceMinMax = new Vector2(10,50), attackSpeedMinMax = new Vector2(0, 2), movementSpeedMinMax = new Vector2(0.4f, 5), damageMinMax = new Vector2(5, 17), 
+        healthMinMax = new Vector2(200, 600), rangeMinMax = new Vector2(0.5f, 2);
+
+
+    // GET STAT FUNCTIONS
     public float GetDefence()
     {
         return defence;
     }
-
     public float GetAttackSpeed()
     {
         return attackSpeed;
     }
-
     public float GetMovementSpeed()
     {
         return movementSpeed;
     }
-
     public float GetDamage()
     {
         return damage;
     }
-
     public float GetHealth()
     {
         return health;
@@ -37,47 +37,42 @@ public class Stats : MonoBehaviour
     {
         return range;
     }
-
     public float GetScore()
     {
         return score;
     }
-
     public float GetShopPrice ()
     {
         return shopPrice;
     }
-
+    
+    // SET STAT FUNCTIONS
     public void SetDefence(float Defence)
     {
         defence = Defence;
     }
-
     public void SetAttackSpeed(float AttackSpeed)
     {
         attackSpeed = AttackSpeed;
     }
-
     public void SetMovementSpeed(float MovementSpeed)
     {
         movementSpeed = MovementSpeed;
     }
-
     public void SetDamage(float Damage)
     {
         damage = Damage;
     }
-
     public void SetHealth(float Health)
     {
         health = Health;
     }
-
     public void SetRange(float Range)
     {
         range = Range;
     }
 
+    // SET CREATION PARAMETERS FUNCTIONS
     public void SetDefenceMinMax(float x,float y)
     {
         defenceMinMax = new Vector2(x, y);
@@ -121,7 +116,7 @@ public class Stats : MonoBehaviour
         score += (GetDamage() - damageMinMax.x) / (damageMinMax.y - damageMinMax.x);
         score += (GetHealth() - healthMinMax.x) / (healthMinMax.y - healthMinMax.x);
         score += (GetRange() - rangeMinMax.x) / (rangeMinMax.y - rangeMinMax.x);
-        shopPrice = Mathf.Round(shopPrice * (1 + score));
+        shopPrice = Mathf.Round(250 * (1 + score)); // changed shopPrice to 250, because shopPrice is 0 by default
         score /= 6;
     }
 }
