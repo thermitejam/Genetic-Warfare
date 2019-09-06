@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class AlienBase : MonoBehaviour
 {
-
     [SerializeField] // STATS
     private float score, shopPrice = 250, defence, attackSpeed, movementSpeed, damage, health, range;
+
+    [System.NonSerialized] // Seperate scores for each score, that way we can use the values in the stat box
+    public float defenceScore, attackSpeedScore, movementSpeedScore, damageScore, healthScore, rangeScore;
+
     [SerializeField] // CREATION PARAMETERS these are default values, eventually you wont need default values because youll create it in the enemy Start() this is just for testing
     public Vector2 defenceMinMax = new Vector2(10,50), attackSpeedMinMax = new Vector2(0, 2), movementSpeedMinMax = new Vector2(0.4f, 5), damageMinMax = new Vector2(5, 17), 
         healthMinMax = new Vector2(200, 600), rangeMinMax = new Vector2(0.5f, 2);
-
 
     // GET STAT FUNCTIONS
     public float GetDefence()
@@ -110,12 +112,13 @@ public class AlienBase : MonoBehaviour
 
     public void ScoreStats()
     {
-        score = (GetDefence() - defenceMinMax.x) / (defenceMinMax.y - defenceMinMax.x);
-        score += (GetAttackSpeed() - attackSpeedMinMax.x) / (attackSpeedMinMax.y - attackSpeedMinMax.x);
-        score += (GetMovementSpeed() - movementSpeedMinMax.x) / (movementSpeedMinMax.y - movementSpeedMinMax.x);
-        score += (GetDamage() - damageMinMax.x) / (damageMinMax.y - damageMinMax.x);
-        score += (GetHealth() - healthMinMax.x) / (healthMinMax.y - healthMinMax.x);
-        score += (GetRange() - rangeMinMax.x) / (rangeMinMax.y - rangeMinMax.x);
+        defenceScore = (GetDefence() - defenceMinMax.x) / (defenceMinMax.y - defenceMinMax.x);
+        attackSpeedScore = (GetAttackSpeed() - attackSpeedMinMax.x) / (attackSpeedMinMax.y - attackSpeedMinMax.x);
+        movementSpeedScore = (GetMovementSpeed() - movementSpeedMinMax.x) / (movementSpeedMinMax.y - movementSpeedMinMax.x);
+        damageScore = (GetDamage() - damageMinMax.x) / (damageMinMax.y - damageMinMax.x);
+        healthScore = (GetHealth() - healthMinMax.x) / (healthMinMax.y - healthMinMax.x);
+        rangeScore = (GetRange() - rangeMinMax.x) / (rangeMinMax.y - rangeMinMax.x);
+        score = defenceScore + attackSpeedScore + movementSpeedScore + damageScore + healthScore + rangeScore;
         shopPrice = Mathf.Round(250 * (1 + score)); // changed shopPrice to 250, because shopPrice is 0 by default
         score /= 6;
     }

@@ -21,6 +21,8 @@ public class JaotopController : AlienBase
         GenerateBase();
         ScoreStats();
 
+       
+
         alienID = PlayerPrefs.GetInt("alienID") + 1; // Give the alien a unique ID. It will never not be unique as it is always 1 more than the last
         PlayerPrefs.SetInt("alienID", PlayerPrefs.GetInt("alienID") + 1); // If this fucks up we can use random number from 9999999, and compare it against the id list to make sure its not identical
 
