@@ -18,13 +18,12 @@ public class LoadAndSave : MonoBehaviour
 
         foreach (string id in alienIdsArray) // Then pair the id's with it's corresponding string, which will hold the alien data
         {
-            int.TryParse(id, out idStringToInt); // have to use tryparse for some reason, parse throws an error
-            //alienDataDict.Add(idStringToInt, PlayerPrefs.GetString(id));
+            int.TryParse(id, out idStringToInt); // have to use tryparse for some reason, parse throws an error            
             alienDataDict[idStringToInt] = PlayerPrefs.GetString(id);
             Debug.Log("Alien ID: " + idStringToInt + " Data: " + alienDataDict[idStringToInt]); // prints out the loaded 
         }
-
-        //PlayerPrefs.DeleteKey("alienIdsString"); // Useful for clearing both data structures
+       
+       //PlayerPrefs.DeleteKey("alienIdsString"); // Useful for clearing both data structures
         //alienDataDict.Clear();
 
         // using the scene parameter we can determine which scene the alien should be instantiated in
@@ -39,7 +38,9 @@ public class LoadAndSave : MonoBehaviour
         if (!PlayerPrefs.GetString("alienIdsString").Contains(id.ToString())) 
         {
             PlayerPrefs.SetString("alienIdsString", PlayerPrefs.GetString("alienIdsString") + "/" + id.ToString());
-        }        
+        }     
+        
+        // if it's not fighting or in the shop you should add it to the inventory. use a parameter to check (maybe 0-3 or something?)
         
     }
 

@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 2277134063339288655}
   - component: {fileID: 5110212955430988856}
   - component: {fileID: 2860209287223530071}
-  - component: {fileID: 7504749092936332215}
-  - component: {fileID: 4090628725683384299}
+  - component: {fileID: 514655819537606345}
   m_Layer: 0
   m_Name: Jaotop
   m_TagString: Untagged
@@ -29,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 2860209287223530068}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 388.9105, y: 235.20116, z: -67.375}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -72,8 +71,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0, b: 0.093075275, a: 1}
+  m_Sprite: {fileID: 21300000, guid: c55a13e92bb791e4b86b4dd85d3aa635, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -96,21 +95,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
-  shopPrice: 0
+  shopPrice: 250
   defence: 0
   attackSpeed: 0
   movementSpeed: 0
   damage: 0
   health: 0
   range: 0
-  defenceMinMax: {x: 0, y: 0}
-  attackSpeedMinMax: {x: 0, y: 0}
-  movementSpeedMinMax: {x: 0, y: 0}
-  damageMinMax: {x: 0, y: 0}
-  healthMinMax: {x: 0, y: 0}
-  rangeMinMax: {x: 0, y: 0}
+  defenceMinMax: {x: 10, y: 70}
+  attackSpeedMinMax: {x: 0, y: 3}
+  movementSpeedMinMax: {x: 0.2, y: 0.5}
+  damageMinMax: {x: 8, y: 25}
+  healthMinMax: {x: 200, y: 700}
+  rangeMinMax: {x: 0.2, y: 0.7}
   alienID: 0
---- !u!61 &7504749092936332215
+--- !u!61 &514655819537606345
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,26 +124,14 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 0.5, y: 0.5}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
---- !u!114 &4090628725683384299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2860209287223530068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef1a2cf20eee5534d9af26ca1d79850c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
