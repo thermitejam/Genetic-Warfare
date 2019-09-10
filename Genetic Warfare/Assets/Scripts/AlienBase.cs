@@ -59,33 +59,35 @@ public class AlienBase : MonoBehaviour
         alienID = PlayerPrefs.GetInt("alienIDrandom") + 1; // Assign unique ID
         PlayerPrefs.SetInt("alienIDrandom", PlayerPrefs.GetInt("alienIDrandom") + 1); // Increase it by 1 for next time
 
-        // An alien ID holds all the data about it. With the ID you can switch scenes, close the game etc. and maintain the data
-        // First number is it's ID
-        // Second number is it's alien type,, 0 = JAOTOP, 1 = QAYRAT, update as more are added
-        // Third number is it's position, 0 = nowhere (i.e. in shop, fighting opponent), 1 = inventory, 2 = placed on home floor
-        // Whenever any of the data changes you just update the ID string (by using playerprefs.setstring(id,...) so it can be used elsewhere
-        // last number is the inventory slot, initially it is -1 so we know it's not in the inventory
+       /* ID Data Key:
+       0: Alien ID
+       1: Alien Type (0=Jaotop, 1=Qayrat, update when more are added)
+       2: Position (0 = nowhere(just spawned), 1 = inventory, 2 = floor (anything on the floor is also in the inventory)
+       3: Score
+       4: Shop Price
+       5: Defence
+       6: Attack Speed
+       7: Movement Speed
+       8: Damage
+       9: Health
+       10: Range
+       11: Inventory Slot (-1 by default because it has no slot)
+        */
         PlayerPrefs.SetString(alienID.ToString(), alienID.ToString() + "/" + alienType.ToString() + "/" + 0.ToString() + "/" + score.ToString() + "/" + shopPrice.ToString() + "/" + defence.ToString() + "/" 
             + attackSpeed.ToString() + "/" + movementSpeed.ToString() + "/" + damage.ToString() + "/" + health.ToString() + "/" + range.ToString() + "/" + "-1");
 
-        GameObject.Find("DataManager").GetComponent<LoadAndSave>().Add(alienID); // Then add it to the list of active ID's
+        GameObject.Find("DataManager").GetComponent<LoadAndSave>().AddToActiveAliens(alienID); // Then add it to the list of active ID's
     }
 
-     public void UpdateID(int valueIndex, int thingToAdd) // Swaps one thing for another in our ID string
+    void OnMouseDown() // When clicked
     {
-        unpackedID = PlayerPrefs.GetString(alienID.ToString()).Split('/');
-        unpackedID[valueIndex] = thingToAdd.ToString();
-        PlayerPrefs.SetString(alienID.ToString(), unpackedID[0] + "/" + unpackedID[1] + "/" + unpackedID[2] + "/" + unpackedID[3] + "/" + unpackedID[4] + "/" + unpackedID[5] + "/" + unpackedID[6] + "/"
-        + unpackedID[7] + "/" + unpackedID[8] + "/" + unpackedID[9] + "/" + unpackedID[10] + "/" + unpackedID[11]);
-    }
-
-    void OnMouseDown() // When the aliens clicked move the panel to the middle of the screen and create a panel using the alien ID
-    {
-        GameObject.Find("AlienInfoPanel").GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
+        GameObject.Find("AlienInfoPanel").GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0); // Create a panel with the alien ID
         GameObject.Find("AlienInfoPanel").GetComponent<CreateStatBox>().CreatePanel(alienID);
-        if(int.Parse(PlayerPrefs.GetString(alienID.ToString()).Split('/')[2]) == 2) // if it's on the floor then we can go ahead and feed it to our stat box
+
+        // If it's on the floor then we can feed it to our stat box, if it wasn't on the floor then we might not want to feed the game object
+        if (GameObject.Find("DataManager").GetComponent<IDManager>().GetPosition(alienID) == 2) 
         {
-            GameObject.Find("AlienInfoPanel").GetComponent<CreateStatBox>().FeedAlien(gameObject); // give the stat box a reference incase the player wants to move(destroy) it
+            GameObject.Find("AlienInfoPanel").GetComponent<CreateStatBox>().FeedAlien(gameObject); // Give the stat box a reference incase the player wants to move(destroy) it
         }        
     }
 }

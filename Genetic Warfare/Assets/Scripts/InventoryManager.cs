@@ -10,14 +10,11 @@ public class InventoryManager : MonoBehaviour
     private int emptySlotIndex;
 
     public Sprite[] alienIcons;
-    private Sprite alienSprite;
-
-    private Color tempCol;
-
-    private string[] unpackedID;
 
     private int slotClicked;
     private int alienClicked;
+
+    private IDManager idManager;
 
     void Awake()
     {
@@ -29,13 +26,16 @@ public class InventoryManager : MonoBehaviour
         {
             PlayerPrefs.DeleteKey("slot" + invSlots[i]);
         }
+
+        // Get the ID Manager for later use
+        idManager = GameObject.Find("DataManager").GetComponent<IDManager>();
     }
 
     public void AddToInventory(int alienID)
     {
-        if (int.Parse(PlayerPrefs.GetString(alienID.ToString()).Split('/')[11]) == -1) // If the alien doesn't have a pre-defined slot
+        if (idManager.GetInventorySlot(alienID) == -1) // If the alien doesn't have a pre-defined slot
         {
-            // search for empty slot, don't need to save the slot emptyness as a playerpref because the inventory is wiped every scene change
+            // Get an empty slot index
             for (int i = 0; i < invSlots.Length; i++)
             {
                 if (invSlots[i].IsEmpty())
@@ -45,25 +45,22 @@ public class InventoryManager : MonoBehaviour
                 }
             }
 
-            // Then we have to unpack the ID and set the aliens slot index to the newly selected one
-            unpackedID = PlayerPrefs.GetString(alienID.ToString()).Split('/');
-            unpackedID[11] = emptySlotIndex.ToString();
-            PlayerPrefs.SetString(alienID.ToString(), unpackedID[0] + "/" + unpackedID[1] + "/" + unpackedID[2] + "/" + unpackedID[3] + "/" + unpackedID[4] + "/" + unpackedID[5] + "/" + unpackedID[6] + "/"
-            + unpackedID[7] + "/" + unpackedID[8] + "/" + unpackedID[9] + "/" + unpackedID[10] + "/" + unpackedID[11]);
-        } else // If it does have a pre-defined slot, set that to be the empty slot which we will insert into
-        { // We don't need to worry about putting an alien in an already used spot because loading the scene is the only time the aliens will have a pre-defined slot
-            emptySlotIndex = int.Parse(PlayerPrefs.GetString(alienID.ToString()).Split('/')[11]);           
+            // Set the inventory slot of the alien to the empty one we just found
+            idManager.SetInventorySlot(alienID, emptySlotIndex);
+        } else { 
+            
+            // If the alien already has a slot then set the empty slot index to that slot
+            emptySlotIndex = idManager.GetInventorySlot(alienID);           
         }
 
-        // Set slot value to a string of the aliens stats, so now the stats of the alien can be accessed anywhere        
+        // Set slot value to a string of the aliens stats. Slot4 = "1/0/1/etc.." so we can retrieve anywhere     
         PlayerPrefs.SetString("slot" + emptySlotIndex.ToString(), alienID.ToString());
 
-        // Set the image of the slot to be identical to the aliens
-        alienSprite = alienIcons[int.Parse(PlayerPrefs.GetString(alienID.ToString()).Split('/')[1])];
+        // Set the image of the slot to be identical to the alien
         itemParent.transform.GetChild(emptySlotIndex).GetChild(0).GetChild(0).GetComponent<Image>().enabled = true;
-        itemParent.transform.GetChild(emptySlotIndex).GetChild(0).GetChild(0).GetComponent<Image>().sprite = alienSprite;
+        itemParent.transform.GetChild(emptySlotIndex).GetChild(0).GetChild(0).GetComponent<Image>().sprite = alienIcons[idManager.GetAlienType(alienID)];
 
-        if (int.Parse(PlayerPrefs.GetString(alienID.ToString()).Split('/')[2]) == 2) // If the alien is pre-defined to be on the floor
+        if (idManager.GetPosition(alienID) == 2) // If the alien is on the floor make it's button un-interactable
         {
             itemParent.transform.GetChild(emptySlotIndex).GetChild(0).GetComponent<Button>().interactable = false;
         }
@@ -76,8 +73,8 @@ public class InventoryManager : MonoBehaviour
     {
         if (!invSlots[slot].IsEmpty())
         {
-            GameObject.Find("AlienInfoPanel").GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0); // set position to 0
-            GameObject.Find("AlienInfoPanel").GetComponent<CreateStatBox>().CreatePanel(int.Parse(PlayerPrefs.GetString("slot"+slot.ToString()))); // Get the alien ID from the slot name
+            GameObject.Find("AlienInfoPanel").GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
+            GameObject.Find("AlienInfoPanel").GetComponent<CreateStatBox>().CreatePanel(int.Parse(PlayerPrefs.GetString("slot"+slot.ToString()))); // Create panel from slot name
             alienClicked = int.Parse(PlayerPrefs.GetString("slot" + slot.ToString()));
             slotClicked = slot;
         }

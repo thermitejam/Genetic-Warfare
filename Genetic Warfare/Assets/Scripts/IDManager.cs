@@ -8,14 +8,14 @@ public class IDManager : MonoBehaviour
 
     public int GetAlienType(int id) { return GetIDValueAsInt(id, 1); }
     public int GetPosition(int id) { return GetIDValueAsInt(id, 2); }
-    public float GetScore(int id) { return GetIDValueAsInt(id, 3); }
+    public float GetScore(int id) { return GetIDValueAsFloat(id, 3); }
     public float GetShopPrice(int id) { return GetIDValueAsInt(id, 4); }    
-    public float GetDefence(int id) { return GetIDValueAsInt(id, 5); }
-    public float GetAttackSpeed(int id) { return GetIDValueAsInt(id, 6); }
-    public float GetMovementSpeed(int id) { return GetIDValueAsInt(id, 7); }
-    public float GetDamage(int id) { return GetIDValueAsInt(id, 8); }
-    public float GetHealth(int id) { return GetIDValueAsInt(id, 9); }
-    public float GetRange(int id) { return GetIDValueAsInt(id, 10); }
+    public float GetDefence(int id) { return GetIDValueAsFloat(id, 5); }
+    public float GetAttackSpeed(int id) { return GetIDValueAsFloat(id, 6); }
+    public float GetMovementSpeed(int id) { return GetIDValueAsFloat(id, 7); }
+    public float GetDamage(int id) { return GetIDValueAsFloat(id, 8); }
+    public float GetHealth(int id) { return GetIDValueAsFloat(id, 9); }
+    public float GetRange(int id) { return GetIDValueAsFloat(id, 10); }
     public int GetInventorySlot(int id) { return GetIDValueAsInt(id, 11); }
 
     public int GetIDValueAsInt(int id, int index)
