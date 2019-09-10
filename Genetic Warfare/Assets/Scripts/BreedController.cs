@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BreedController : MonoBehaviour
 {
+    /*[SerializeField] private GameObject Jaotop;
     [SerializeField] private GameObject Qayrat;
-    [SerializeField] private GameObject Jaotop;
     private AlienBase babyScript;
     private GameObject baby;
     private string babyToMake;
@@ -57,5 +57,5 @@ public class BreedController : MonoBehaviour
 
         babyScript.GenerateBase();
         babyScript.ScoreStats();
-    }
+    }*/
 }
