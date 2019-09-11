@@ -42,7 +42,7 @@ public class LoadAndSave : MonoBehaviour
         foreach (KeyValuePair<int, string> id in alienDataDict) // Add aliens to lists so we can load them into the correct scenes
         {
             //PlayerPrefs.GetString(id.Key.ToString()).Split('/')[2]
-            if (idManager.GetPosition(id.Key) == 1) // If the alien should be in the inventory (1)
+            if (idManager.GetPosition(id.Key) == 1 || idManager.GetPosition(id.Key) == 3) // If the alien's in the inventory or the bleeding slot, add it to the inventory
             {
                 ToAddToInvent.Add(id.Key);
             }
@@ -68,7 +68,17 @@ public class LoadAndSave : MonoBehaviour
             case 1: // Fighting scene
                 break;
             case 2: // Breeding scene
-                break;
+                foreach (int item in ToAddToInvent)
+                {
+                    invent.AddToInventory(item);                  
+                }
+                foreach (int item in ToAddToFloor)
+                {
+                    invent.AddToInventory(item);
+                    GameObject.Find("DataManager").GetComponent<IDManager>().SetInventorySlot(item, idManager.GetInventorySlot(item)); // Set the inventory slot to be the slot of the inventory alien
+                    GameObject.Find("Inventory").GetComponent<InventoryManager>().AlienOnFloor(false, GameObject.Find("DataManager").GetComponent<IDManager>().GetInventorySlot(item)); // Make it's inventory slot un-interactable
+                }
+                    break;
             case 3: // Shop scene
                 break;
             case 4: // Evotree scene

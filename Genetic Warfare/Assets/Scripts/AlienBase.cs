@@ -62,7 +62,7 @@ public class AlienBase : MonoBehaviour
        /* ID Data Key:
        0: Alien ID
        1: Alien Type (0=Jaotop, 1=Qayrat, update when more are added)
-       2: Position (0 = nowhere(just spawned), 1 = inventory, 2 = floor (anything on the floor is also in the inventory)
+       2: Position (0 = nowhere(just spawned), 1 = inventory, 2 = floor, 3 = breeding slot
        3: Score
        4: Shop Price
        5: Defence

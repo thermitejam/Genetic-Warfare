@@ -11,9 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Fighting.unity
     guid: 447ba86984d73a34eb09851a1408d6fe
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Breeding.unity
-    guid: 9a4cae87733535e4bbd51ab1124ea5e9
+    guid: 524c8945457cbf94cb8e6eef8267ac34
   - enabled: 1
     path: Assets/Scenes/Shop.unity
     guid: 750ea428dfd9fbe47a871fccf2f80369
