@@ -41,14 +41,17 @@ public class LoadAndSave : MonoBehaviour
 
         foreach (KeyValuePair<int, string> id in alienDataDict) // Add aliens to lists so we can load them into the correct scenes
         {
-            //PlayerPrefs.GetString(id.Key.ToString()).Split('/')[2]
-            if (idManager.GetPosition(id.Key) == 1 || idManager.GetPosition(id.Key) == 3) // If the alien's in the inventory or the bleeding slot, add it to the inventory
+            if (idManager.GetPosition(id.Key) == 1 ) // If the alien's in the inventory add it to the inventory
             {
                 ToAddToInvent.Add(id.Key);
             }
             else if (idManager.GetPosition(id.Key) == 2) // If the alien should b on the floor (2)
             {
                 ToAddToFloor.Add(id.Key);
+            } else if (idManager.GetPosition(id.Key) == 3) // If it was in the breeding slot, reset it so that it's in the inventory
+            {
+                idManager.SetPosition(id.Key, 1);
+                ToAddToInvent.Add(id.Key);
             }
         }
 

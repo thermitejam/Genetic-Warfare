@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class InventoryManager : MonoBehaviour
 {
     [SerializeField] private GameObject itemParent;
-    private InvSlotScript[] invSlots;
+    public InvSlotScript[] invSlots;
     private int emptySlotIndex;
 
     public Sprite[] alienIcons;
@@ -87,10 +88,17 @@ public class InventoryManager : MonoBehaviour
 
     public void KillButtonClicked() // This function uses the slot clicked function's alienClicked variable to tell it which one to delete
     {
-        itemParent.transform.GetChild(slotClicked).GetChild(0).GetChild(0).GetComponent<Image>().enabled = false; // Use the slot integer to wipe the slot clear
-        itemParent.transform.GetChild(slotClicked).GetChild(0).GetChild(0).GetComponent<Image>().sprite = null;
-        invSlots[slotClicked].MakeEmpty(); // Make the slot unable to be clicked
-        GameObject.Find("AlienInfoPanel").GetComponent<CreateStatBox>().ClosePanel(); // Close the info panel
-        GameObject.Find("DataManager").GetComponent<LoadAndSave>().DeleteAlien(alienClicked); // Then we send it to LoadAndSave to be wiped from the data structures
+        if (SceneManager.GetActiveScene().buildIndex == 2 && GameObject.Find("BreedingManager").GetComponent<BreedController>().clickedSlotSave != 0) // If we're in the breeding and we clicked a breeding slot
+        {
+            GameObject.Find("BreedingManager").GetComponent<BreedController>().KillButtonClicked(); // Use the breed controller kill function instead of this one
+        }
+        else
+        {
+            itemParent.transform.GetChild(slotClicked).GetChild(0).GetChild(0).GetComponent<Image>().enabled = false; // Use the slot integer to wipe the slot clear
+            itemParent.transform.GetChild(slotClicked).GetChild(0).GetChild(0).GetComponent<Image>().sprite = null;
+            invSlots[slotClicked].MakeEmpty(); // Make the slot unable to be clicked
+            GameObject.Find("AlienInfoPanel").GetComponent<CreateStatBox>().ClosePanel(); // Close the info panel
+            GameObject.Find("DataManager").GetComponent<LoadAndSave>().DeleteAlien(alienClicked); // Then we send it to LoadAndSave to be wiped from the data structures
+        }
     }
 }

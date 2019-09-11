@@ -23,6 +23,7 @@ public class CreateStatBox : MonoBehaviour
 
     public void CreatePanel(int alienID)
     {
+
         // Set the slider values; We divide by 2 as 2 is the cap at which no stat can surpass. This can be altered
         defenceBar.value = idManager.GetDefence(alienID)/2;
         attackSpeedBar.value = idManager.GetAttackSpeed(alienID) / 2;

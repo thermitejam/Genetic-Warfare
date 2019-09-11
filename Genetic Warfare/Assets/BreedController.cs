@@ -15,6 +15,10 @@ public class BreedController : MonoBehaviour
     private CreateStatBox statPanel;
     private InventoryManager invent;
 
+    [SerializeField] private GameObject[] panelArray;
+    public int clickedSlotSave;
+    private int IdToDelete;
+
     [SerializeField] private GameObject[] alienArray;
     private string babyToMake;
     private GameObject babyInstance;
@@ -88,6 +92,7 @@ public class BreedController : MonoBehaviour
     public void CreatePanelWhenClicked(int clickedSlot)
     {
         statPanel.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
+        clickedSlotSave = clickedSlot; // So we can use the clicked slot when deleting below
 
         if (clickedSlot == 1) {
            statPanel.CreatePanel(id1);
@@ -99,6 +104,35 @@ public class BreedController : MonoBehaviour
         {
             statPanel.CreatePanel(id3);
         }
+    }
+
+    public void KillButtonClicked()
+    {
+        if (clickedSlotSave == 1)
+        {
+            slot1Occupied = false;
+            IdToDelete = id1;
+        }
+        else if (clickedSlotSave == 2)
+        {
+            slot1Occupied = false;
+            IdToDelete = id2;
+        } else if (clickedSlotSave == 3)
+        {
+            IdToDelete = id3;
+            GameObject.Find("Alien3Panel").GetComponent<Animator>().SetBool("babyFade", false);
+        }
+
+         // Handles removing from inventory
+        itemParent.transform.GetChild(idManager.GetInventorySlot(IdToDelete)).GetChild(0).GetChild(0).GetComponent<Image>().enabled = false; // Use the slot integer to wipe the slot clear
+        itemParent.transform.GetChild(idManager.GetInventorySlot(IdToDelete)).GetChild(0).GetChild(0).GetComponent<Image>().sprite = null;
+        itemParent.transform.GetChild(idManager.GetInventorySlot(IdToDelete)).GetChild(0).GetComponent<Button>().interactable = true;
+        invent.invSlots[idManager.GetInventorySlot(IdToDelete)].MakeEmpty(); // Make the slot unable to be clicked
+            
+        statPanel.ClosePanel(); // Close the info panel        
+        GameObject.Find("DataManager").GetComponent<LoadAndSave>().DeleteAlien(IdToDelete); // Then we send it to LoadAndSave to be wiped from the data structures
+
+        clickedSlotSave = 0;
     }
 
     public void Breed()
