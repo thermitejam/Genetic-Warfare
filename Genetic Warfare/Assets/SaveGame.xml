@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<SaveGame xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <money>2147483647</money>
+  <aliens>
+    <alienEntry>
+      <id>yorNan</id>
+      <type>2</type>
+      <pos>1</pos>
+      <score>0</score>
+      <ShopPrice>69</ShopPrice>
+      <Defence>0</Defence>
+      <AttackSpeed>420</AttackSpeed>
+      <MovementSpeed>0.5</MovementSpeed>
+      <Damage>0.1</Damage>
+      <Health>5</Health>
+      <Range>500</Range>
+    </alienEntry>
+    <alienEntry>
+      <id>yorMum</id>
+      <type>1</type>
+      <pos>2</pos>
+      <score>9001</score>
+      <ShopPrice>69</ShopPrice>
+      <Defence>0</Defence>
+      <AttackSpeed>420</AttackSpeed>
+      <MovementSpeed>0.5</MovementSpeed>
+      <Damage>0.1</Damage>
+      <Health>5</Health>
+      <Range>500</Range>
+    </alienEntry>
+  </aliens>
+</SaveGame>
