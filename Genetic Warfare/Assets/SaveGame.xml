@@ -1,6 +1,45 @@
 <?xml version="1.0"?>
 <SaveGame xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <money>2147483647</money>
+  <money>0</money>
   <aliens>
+    <alienEntry>
+      <id>8042763</id>
+      <species>jaotop</species>
+      <pos>0</pos>
+      <ShopPrice>521</ShopPrice>
+      <score>0.3018241</score>
+      <Defence>43.7</Defence>
+      <AttackSpeed>1.29</AttackSpeed>
+      <MovementSpeed>0.97</MovementSpeed>
+      <Damage>40.23</Damage>
+      <Health>130</Health>
+      <Range>1.4</Range>
+    </alienEntry>
+    <alienEntry>
+      <id>8915404</id>
+      <species>jaotop</species>
+      <pos>0</pos>
+      <ShopPrice>513</ShopPrice>
+      <score>0.281347215</score>
+      <Defence>40.23</Defence>
+      <AttackSpeed>1.77</AttackSpeed>
+      <MovementSpeed>0.7</MovementSpeed>
+      <Damage>42.1</Damage>
+      <Health>130</Health>
+      <Range>2.69</Range>
+    </alienEntry>
+    <alienEntry>
+      <id>9991594</id>
+      <species>jaotop</species>
+      <pos>0</pos>
+      <ShopPrice>497</ShopPrice>
+      <score>0.241902784</score>
+      <Defence>29.05</Defence>
+      <AttackSpeed>2.43</AttackSpeed>
+      <MovementSpeed>0.96</MovementSpeed>
+      <Damage>39.54</Damage>
+      <Health>130</Health>
+      <Range>2.13</Range>
+    </alienEntry>
   </aliens>
 </SaveGame>

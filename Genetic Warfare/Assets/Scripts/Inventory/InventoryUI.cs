@@ -17,10 +17,11 @@ public class InventoryUI : MonoBehaviour
 
     void ClearInventorySlots()
     {
-        Debug.Log("CLEARING OLD INVENTORY");
-
+        Debug.Log("CLEARING OLD INVENTORY " + inventorySlots.Count );
+        
         for (int i = 0; i < inventorySlots.Count; i++)
         {
+            Debug.Log("Times ran: " + i);
             Destroy(inventorySlots[i].gameObject);
             inventorySlots.RemoveAt(i);
         }
@@ -34,9 +35,11 @@ public class InventoryUI : MonoBehaviour
 
         for (int i = 0; i < Inventory.ins.getAlienCount(); i++)
         {
+            
             InventorySlotUI tmp = Instantiate(inventorySlotPrefab, inventoryGrid.transform);
             inventorySlots.Add(tmp);
             tmp.UpdateInfo(Inventory.ins.getAlien(i).id);
         }
+        Debug.Log(inventorySlots.Count);
     }
 }

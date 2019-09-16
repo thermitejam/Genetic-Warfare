@@ -8,6 +8,14 @@ using System.IO;
 public class XMLSaveLoad : MonoBehaviour
 {
     public static XMLSaveLoad ins;
+    
+    private void OnApplicationQuit()
+    {
+        SaveGame tmp = new SaveGame();
+        tmp.aliens = Inventory.ins.GetInventory();
+        tmp.money = Inventory.ins.GetMoney();
+        Save(tmp);
+    }
 
     private void Awake()
     {

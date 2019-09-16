@@ -102,8 +102,17 @@ public class Inventory : MonoBehaviour
     {
         money -= amount;
     }
+    public int GetMoney ()
+    {
+        return money;
+    }
     public int getAlienCount()
     {
         return aliens.Count;
+    }
+
+    public List<alienEntry> GetInventory()
+    {
+        return aliens;
     }
 }
