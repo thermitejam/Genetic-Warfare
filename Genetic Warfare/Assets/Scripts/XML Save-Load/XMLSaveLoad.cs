@@ -40,8 +40,8 @@ public class alienEntry
     //public Color color;
     public AlienSpecies species;
     public int pos;
+    public int ShopPrice;
     public float score;
-    public float ShopPrice;
     public float Defence;
     public float AttackSpeed;
     public float MovementSpeed;

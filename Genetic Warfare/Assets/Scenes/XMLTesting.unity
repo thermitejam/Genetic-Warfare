@@ -197,6 +197,8 @@ GameObject:
   - component: {fileID: 634538992}
   - component: {fileID: 634538994}
   - component: {fileID: 634538993}
+  - component: {fileID: 634538996}
+  - component: {fileID: 634538995}
   m_Layer: 0
   m_Name: GameSystems
   m_TagString: GameController
@@ -248,8 +250,8 @@ MonoBehaviour:
     name: BOB
     species: 1
     pos: 0
-    score: 0
     ShopPrice: 0
+    score: 0
     Defence: 0
     AttackSpeed: 0
     MovementSpeed: 0
@@ -257,6 +259,31 @@ MonoBehaviour:
     Health: 0
     Range: 0
   maxInventorySize: 12
+--- !u!114 &634538995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634538991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38e5d602b26270845abf08388f9314be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &634538996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634538991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a01feb5cbd832594ba1f2929385e24f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Jaotop: {fileID: 11400000, guid: 9385ce6dda82a70459d971e999cee59a, type: 2}
 --- !u!1 &1052646534
 GameObject:
   m_ObjectHideFlags: 0
@@ -561,6 +588,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 634538995}
+        m_MethodName: createAlien
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 9385ce6dda82a70459d971e999cee59a,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: AlienTemplate, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1052646539}
         m_MethodName: GenerateInventory
         m_Mode: 1

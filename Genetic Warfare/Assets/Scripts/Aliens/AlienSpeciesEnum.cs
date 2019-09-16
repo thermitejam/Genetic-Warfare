@@ -4,5 +4,5 @@ using UnityEngine;
 
 public enum AlienSpecies
 {
-    Jayyop, NULL
+    jaotop, NULL
 }
