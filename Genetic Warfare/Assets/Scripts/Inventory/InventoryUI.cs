@@ -35,12 +35,17 @@ public class InventoryUI : MonoBehaviour
 
         Debug.Log("GENERATING NEW INVENTORY");
 
+        inventoryGrid.GetComponent<RectTransform>().offsetMax = new Vector2(30, -30); // Reset the rect transform
+
+        inventoryGrid.GetComponent<RectTransform>().offsetMin = new Vector2(25, Inventory.ins.getAlienCount() * -412.5f); // Then set it's bottom offset to be the number of slots * slot length/2 (since 2 slots per row)
+
         for (int i = 0; i < Inventory.ins.getAlienCount(); i++)
         {
             
             InventorySlotUI tmp = Instantiate(inventorySlotPrefab, inventoryGrid.transform);
             inventorySlots.Add(tmp);
             tmp.UpdateInfo(Inventory.ins.getAlien(i).id);
+            
         }
         Debug.Log(inventorySlots.Count);
     }
