@@ -23,8 +23,10 @@ public class InventoryUI : MonoBehaviour
         {
             Debug.Log("Times ran: " + i);
             Destroy(inventorySlots[i].gameObject);
-            inventorySlots.RemoveAt(i);
+            //inventorySlots.RemoveAt(i);
+
         }
+        inventorySlots.Clear();
     }
 
     public void GenerateInventory()

@@ -3,43 +3,69 @@
   <money>0</money>
   <aliens>
     <alienEntry>
-      <id>8042763</id>
+      <id>7414019</id>
       <species>jaotop</species>
       <pos>0</pos>
-      <ShopPrice>521</ShopPrice>
-      <score>0.3018241</score>
-      <Defence>43.7</Defence>
-      <AttackSpeed>1.29</AttackSpeed>
-      <MovementSpeed>0.97</MovementSpeed>
-      <Damage>40.23</Damage>
+      <ShopPrice>534</ShopPrice>
+      <score>0.333990782</score>
+      <Defence>33.18</Defence>
+      <AttackSpeed>2.92</AttackSpeed>
+      <MovementSpeed>1.65</MovementSpeed>
+      <Damage>41.08</Damage>
       <Health>130</Health>
-      <Range>1.4</Range>
+      <Range>2.18</Range>
     </alienEntry>
     <alienEntry>
-      <id>8915404</id>
+      <id>4432661</id>
       <species>jaotop</species>
       <pos>0</pos>
-      <ShopPrice>513</ShopPrice>
-      <score>0.281347215</score>
-      <Defence>40.23</Defence>
-      <AttackSpeed>1.77</AttackSpeed>
-      <MovementSpeed>0.7</MovementSpeed>
-      <Damage>42.1</Damage>
+      <ShopPrice>438</ShopPrice>
+      <score>0.09426852</score>
+      <Defence>9.8</Defence>
+      <AttackSpeed>0.58</AttackSpeed>
+      <MovementSpeed>0.37</MovementSpeed>
+      <Damage>36.94</Damage>
       <Health>130</Health>
-      <Range>2.69</Range>
+      <Range>2.1</Range>
     </alienEntry>
     <alienEntry>
-      <id>9991594</id>
+      <id>2905768</id>
       <species>jaotop</species>
       <pos>0</pos>
-      <ShopPrice>497</ShopPrice>
-      <score>0.241902784</score>
-      <Defence>29.05</Defence>
-      <AttackSpeed>2.43</AttackSpeed>
-      <MovementSpeed>0.96</MovementSpeed>
-      <Damage>39.54</Damage>
+      <ShopPrice>517</ShopPrice>
+      <score>0.29325</score>
+      <Defence>27.83</Defence>
+      <AttackSpeed>0.64</AttackSpeed>
+      <MovementSpeed>1.01</MovementSpeed>
+      <Damage>45.73</Damage>
       <Health>130</Health>
-      <Range>2.13</Range>
+      <Range>1.88</Range>
+    </alienEntry>
+    <alienEntry>
+      <id>6775676</id>
+      <species>jaotop</species>
+      <pos>0</pos>
+      <ShopPrice>476</ShopPrice>
+      <score>0.191101849</score>
+      <Defence>6.97</Defence>
+      <AttackSpeed>2.05</AttackSpeed>
+      <MovementSpeed>1.79</MovementSpeed>
+      <Damage>34.04</Damage>
+      <Health>130</Health>
+      <Range>2.1</Range>
+    </alienEntry>
+    <alienEntry>
+      <id>8376466</id>
+      <species>jaotop</species>
+      <pos>0</pos>
+      <ShopPrice>487</ShopPrice>
+      <score>0.217032433</score>
+      <Defence>9.88</Defence>
+      <AttackSpeed>2.38</AttackSpeed>
+      <MovementSpeed>1.76</MovementSpeed>
+      <Damage>36.36</Damage>
+      <Health>130</Health>
+      <Range>1.09</Range>
     </alienEntry>
   </aliens>
 </SaveGame>

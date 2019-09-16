@@ -11,6 +11,7 @@ public class AlienTemplateLoader : MonoBehaviour
     }
 
     public AlienTemplate Jaotop;
+    public AlienTemplate Qayrat;
 
     public AlienTemplate loadAlien(AlienSpecies species)
     {
@@ -22,6 +23,9 @@ public class AlienTemplateLoader : MonoBehaviour
             case AlienSpecies.jaotop:
                 tmp = Jaotop;
                 
+                break;
+            case AlienSpecies.qayrat:
+                tmp = Qayrat;
                 break;
 
         }
