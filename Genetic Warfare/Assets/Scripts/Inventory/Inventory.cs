@@ -16,6 +16,10 @@ public class Inventory : MonoBehaviour
 
     [SerializeField] int maxInventorySize = 12;
 
+    private void Start()
+    {
+        aliens = XMLSaveLoad.ins.Load().aliens;
+    }
 
     public bool doesAlienExsist(string id)
     {

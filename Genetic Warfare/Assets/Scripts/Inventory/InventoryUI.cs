@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
 {
+    public static InventoryUI ins;
+    private void Awake()
+    {
+        ins = this;
+    }
+
+
     [SerializeField] InventorySlotUI inventorySlotPrefab;
     [SerializeField] GameObject inventoryGrid;
     [SerializeField] List<InventorySlotUI> inventorySlots = new List<InventorySlotUI>();

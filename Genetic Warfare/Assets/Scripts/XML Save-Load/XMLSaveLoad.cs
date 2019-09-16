@@ -25,7 +25,7 @@ public class XMLSaveLoad : MonoBehaviour
     {
         SaveGame saveGame = new SaveGame();
         XmlSerializer serializer = new XmlSerializer(typeof(SaveGame));
-        FileStream stream = new FileStream(Application.dataPath + "/SaveGame.xml", FileMode.Open);
+        FileStream stream = new FileStream(Application.dataPath + "/SaveGame.xml", FileMode.OpenOrCreate);
         saveGame = serializer.Deserialize(stream) as SaveGame;
         stream.Close();
         return saveGame;
