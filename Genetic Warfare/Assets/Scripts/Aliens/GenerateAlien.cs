@@ -6,11 +6,108 @@ public class GenerateAlien : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    
 
-    public void BreedAlien(alienEntry alien1,alienEntry alien2)
+
+    public void BreedAlien(alienEntry alien1, alienEntry alien2)
     {
-        
+        alienEntry newAlien = new alienEntry();
+
+
+        newAlien.species = alien1.species;
+
+
+        float min, max;
+        // checking each stat for which one is lower
+        if (alien1.Defence < alien2.Defence)
+        {
+            min = alien1.Defence;
+            max = alien2.Defence;
+        }
+        else
+        {
+            max = alien1.Defence;
+            min = alien2.Defence;
+        }
+        newAlien.Defence = Mathf.Round(100 * Random.Range(min - (min / 2), (max / 2) + max)) / 100; // calculating the new stat
+
+
+
+        if (alien1.Range < alien2.Range)
+        {
+            min = alien1.Range;
+            max = alien2.Range;
+        }
+        else
+        {
+            max = alien1.Range;
+            min = alien2.Range;
+        }
+        newAlien.Range = Mathf.Round(100 * Random.Range(min - (min / 2), (max / 2) + max)) / 100;
+
+
+
+        if (alien1.Health < alien2.Health)
+        {
+            min = alien1.Health;
+            max = alien2.Health;
+        }
+        else
+        {
+            max = alien1.Health;
+            min = alien2.Health;
+        }
+        newAlien.Health = Mathf.Round(100 * Random.Range(min - (min / 2), (max / 2) + max)) / 100;
+
+
+
+        if (alien1.AttackSpeed < alien2.AttackSpeed)
+        {
+            min = alien1.AttackSpeed;
+            max = alien2.AttackSpeed;
+        }
+        else
+        {
+            max = alien1.AttackSpeed;
+            min = alien2.AttackSpeed;
+        }
+        newAlien.AttackSpeed = Mathf.Round(100 * Random.Range(min - (min / 2), (max / 2) + max)) / 100;
+
+
+
+        if (alien1.MovementSpeed < alien2.MovementSpeed)
+        {
+            min = alien1.MovementSpeed;
+            max = alien2.MovementSpeed;
+        }
+        else
+        {
+            max = alien1.MovementSpeed;
+            min = alien2.MovementSpeed;
+        }
+        newAlien.MovementSpeed = Mathf.Round(100 * Random.Range(min - (min / 2), (max / 2) + max)) / 100;
+
+
+        if (alien1.Damage < alien2.Damage)
+        {
+            min = alien1.Damage;
+            max = alien2.Damage;
+        }
+        else
+        {
+            max = alien1.Damage;
+            min = alien2.Damage;
+        }
+        newAlien.Damage = Mathf.Round(100 * Random.Range(min - (min / 2), (max / 2) + max)) / 100;
+
+        // adding all the other components to the alien
+        newAlien.id = GenerateNewID(newAlien);
+        newAlien.score = ScoreAlien(newAlien);
+        newAlien.ShopPrice = CalculateShopPrice(newAlien);
+
+        Inventory.ins.addAlienToInventory(newAlien);
+
+
+
     }
 
     public void createAlien(AlienSpecies speciesEnum)
