@@ -29,6 +29,7 @@ public class InventorySlotUI : MonoBehaviour
             Debug.Log("Error: ALIEN DOES NOT EXSIST");
         }
     }
+
     public void RefreshInfo()
     {
         if (alienId == null)

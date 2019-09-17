@@ -5,98 +5,36 @@ using UnityEngine;
 public class GenerateAlien : MonoBehaviour
 {
     // Start is called before the first frame update
-
-
-
     public void BreedAlien(alienEntry alien1, alienEntry alien2)
     {
         alienEntry newAlien = new alienEntry();
 
-
         newAlien.species = alien1.species;
-
 
         float min, max;
         // checking each stat for which one is lower
-        if (alien1.Defence < alien2.Defence)
-        {
-            min = alien1.Defence;
-            max = alien2.Defence;
-        }
-        else
-        {
-            max = alien1.Defence;
-            min = alien2.Defence;
-        }
+        min = Mathf.Min(alien1.Defence, alien2.Defence);
+        max = Mathf.Max(alien1.Defence, alien2.Defence);
         newAlien.Defence = Mathf.Round(100 * Random.Range(min - (min / 2), (max / 2) + max)) / 100; // calculating the new stat
 
-
-
-        if (alien1.Range < alien2.Range)
-        {
-            min = alien1.Range;
-            max = alien2.Range;
-        }
-        else
-        {
-            max = alien1.Range;
-            min = alien2.Range;
-        }
+        min = Mathf.Min(alien1.Range, alien2.Range);
+        max = Mathf.Max(alien1.Range, alien2.Range);
         newAlien.Range = Mathf.Round(100 * Random.Range(min - (min / 2), (max / 2) + max)) / 100;
 
-
-
-        if (alien1.Health < alien2.Health)
-        {
-            min = alien1.Health;
-            max = alien2.Health;
-        }
-        else
-        {
-            max = alien1.Health;
-            min = alien2.Health;
-        }
+        min = Mathf.Min(alien1.Range, alien2.Range);
+        max = Mathf.Max(alien1.Range, alien2.Range);
         newAlien.Health = Mathf.Round(100 * Random.Range(min - (min / 2), (max / 2) + max)) / 100;
 
-
-
-        if (alien1.AttackSpeed < alien2.AttackSpeed)
-        {
-            min = alien1.AttackSpeed;
-            max = alien2.AttackSpeed;
-        }
-        else
-        {
-            max = alien1.AttackSpeed;
-            min = alien2.AttackSpeed;
-        }
+        min = Mathf.Min(alien1.AttackSpeed, alien2.AttackSpeed);
+        max = Mathf.Max(alien1.AttackSpeed, alien2.AttackSpeed);
         newAlien.AttackSpeed = Mathf.Round(100 * Random.Range(min - (min / 2), (max / 2) + max)) / 100;
 
-
-
-        if (alien1.MovementSpeed < alien2.MovementSpeed)
-        {
-            min = alien1.MovementSpeed;
-            max = alien2.MovementSpeed;
-        }
-        else
-        {
-            max = alien1.MovementSpeed;
-            min = alien2.MovementSpeed;
-        }
+        min = Mathf.Min(alien1.MovementSpeed, alien2.MovementSpeed);
+        max = Mathf.Max(alien1.MovementSpeed, alien2.MovementSpeed);
         newAlien.MovementSpeed = Mathf.Round(100 * Random.Range(min - (min / 2), (max / 2) + max)) / 100;
 
-
-        if (alien1.Damage < alien2.Damage)
-        {
-            min = alien1.Damage;
-            max = alien2.Damage;
-        }
-        else
-        {
-            max = alien1.Damage;
-            min = alien2.Damage;
-        }
+        min = Mathf.Min(alien1.Damage, alien2.Damage);
+        max = Mathf.Max(alien1.Damage, alien2.Damage);
         newAlien.Damage = Mathf.Round(100 * Random.Range(min - (min / 2), (max / 2) + max)) / 100;
 
         // adding all the other components to the alien
@@ -105,15 +43,13 @@ public class GenerateAlien : MonoBehaviour
         newAlien.ShopPrice = CalculateShopPrice(newAlien);
 
         Inventory.ins.addAlienToInventory(newAlien);
-
-
-
     }
 
     public void createAlien(AlienSpecies speciesEnum)
     {
         createAlien(AlienTemplateLoader.ins.loadAlien(speciesEnum));
     }
+
     public void createAlien(AlienTemplate species)
     {
         alienEntry newAlien = new alienEntry();
@@ -131,9 +67,9 @@ public class GenerateAlien : MonoBehaviour
         Inventory.ins.addAlienToInventory(newAlien);
         
     }
+
     public float ScoreAlien(alienEntry alien)
-    {
-        
+    {     
         AlienTemplate template = new AlienTemplate();
         template = AlienTemplateLoader.ins.loadAlien(alien.species);
         
@@ -147,6 +83,7 @@ public class GenerateAlien : MonoBehaviour
 
         return score / 6;
     }
+
     public int CalculateShopPrice(alienEntry alien)
     {
         int shopPrice = Mathf.RoundToInt((alien.score + 1) * AlienTemplateLoader.ins.loadAlien(alien.species).BaseShopPrice);
@@ -157,16 +94,12 @@ public class GenerateAlien : MonoBehaviour
 
     public string GenerateNewID(alienEntry alien)
     {
-        string newAlienID = Mathf.Round(Random.Range(0, 10000000)).ToString();
+        string newAlienID = Random.Range(0, 10000000).ToString();
         while (Inventory.ins.doesAlienExsist(newAlienID))
         {
-            newAlienID = Mathf.Round(Random.Range(0, 10000000)).ToString();
+            newAlienID = Random.Range(0, 10000000).ToString();
         }
         alien.id = newAlienID;
         return newAlienID;
-
     }
-
-
-
 }
