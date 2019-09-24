@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/XMLTesting.unity
+    guid: b641ba9e70e46254f917aaa1095bc6ed
+  - enabled: 1
     path: Assets/Scenes/Home Screen.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1

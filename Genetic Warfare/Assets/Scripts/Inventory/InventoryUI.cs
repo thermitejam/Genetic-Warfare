@@ -1,0 +1,49 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class InventoryUI : MonoBehaviour
+{
+    public static InventoryUI ins;
+    private void Awake()
+    {
+        ins = this;
+    }
+
+    [SerializeField] InventorySlotUI inventorySlotPrefab;
+    [SerializeField] GameObject inventoryGrid;
+    [SerializeField] List<InventorySlotUI> inventorySlots = new List<InventorySlotUI>();
+
+    void ClearInventorySlots()
+    {
+        Debug.Log("CLEARING OLD INVENTORY " + inventorySlots.Count );
+        
+        for (int i = 0; i < inventorySlots.Count; i++)
+        {
+            Debug.Log("Times ran: " + i);
+            Destroy(inventorySlots[i].gameObject);
+            //inventorySlots.RemoveAt(i);
+
+        }
+        inventorySlots.Clear();
+    }
+
+    public void GenerateInventory()
+    {
+        ClearInventorySlots();
+
+        Debug.Log("GENERATING NEW INVENTORY");
+
+        inventoryGrid.GetComponent<RectTransform>().offsetMax = new Vector2(30, -30); // Reset the rect transform
+
+        inventoryGrid.GetComponent<RectTransform>().offsetMin = new Vector2(25, Inventory.ins.getAlienCount() * -412.5f); // Then set it's bottom offset to be the number of slots * slot length/2 (since 2 slots per row)
+
+        for (int i = 0; i < Inventory.ins.getAlienCount(); i++)
+        {           
+            InventorySlotUI tmp = Instantiate(inventorySlotPrefab, inventoryGrid.transform);
+            inventorySlots.Add(tmp);
+            tmp.UpdateInfo(Inventory.ins.getAlien(i).id);
+            
+        }
+    }
+}
